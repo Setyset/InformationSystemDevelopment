@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+
+ http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:race.properties"/>
+    </bean>
+
+    <bean id="formulaOne"
+          class="ru.second.FormulaOne">
+        <constructor-arg name="teamRating" value="5"/>
+        <constructor-arg name="tiresRating" value="3"/>
+    </bean>
+
+    <bean id="nascar"
+          class="ru.second.Nascar">
+        <constructor-arg name="engineRating" value="10"/>
+        <constructor-arg name="racerRating" value="4"/>
+    </bean>
+
+    <bean id="race"
+          class="ru.second.Race">
+        <constructor-arg name="participant1" ref="nascar"/>
+        <constructor-arg name="participant2" ref="formulaOne"/>
+        <property name="lapDistance" value="${lapNumbers}"/>
+    </bean>
+</beans>
