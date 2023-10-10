@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Entry</title>
+    <style>
+        input
+        {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<h2>Bicycle</h2>
+<form action="#" th:action="@{/api/bicycles/edit}" th:object="${editForm}" method="POST">
+    <label>ID</label>
+    <input type="number" th:field="*{id}" required min="0">
+    <label>Brand</label>
+    <input type="text" th:field="*{brand}" required>
+    <label>Model</label>
+    <input type="text" th:field="*{model}" required>
+    <label>Equipment</label>
+    <input type="text" th:field="*{equipment}" required>
+    <label>Wheel Diameter</label>
+    <input type="number" th:field="*{wheelDiameter}" required oninput="this.value = Math.abs(this.value)">
+    <label>Price</label>
+    <input type="number" th:field="*{price}" required oninput="this.value = Math.abs(this.value)">
+    <button type="submit">Update</button>
+</form>
+<form action="/menu">
+    <input type="submit" value="Return">
+</form>
+</body>
+</html>

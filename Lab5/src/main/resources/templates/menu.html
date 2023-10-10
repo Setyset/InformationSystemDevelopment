@@ -1,0 +1,37 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Menu</title>
+</head>
+<body>
+<h1>Bicycles Menu</h1>
+<h4 sec:authorize="isAuthenticated()">Welcome! Successful Auth!</h4>
+<a sec:authorize="!isAuthenticated()" href="/auth/login">Login</a>
+<h3 sec:authorize="hasAuthority('bikes:write')">Hello, Admin!</h3>
+
+<ul>
+    <li sec:authorize="hasAuthority('bicycles:read')">
+        <a href="/bicycles">Print all rows</a>
+    </li>
+    <li sec:authorize="hasAuthority('bicycles:write')">
+        <a href="/create">Create new row</a>
+    </li>
+    <li sec:authorize="hasAuthority('bicycles:write')">
+        <a href="/edit">Edit row</a>
+    </li>
+    <li sec:authorize="hasAuthority('bicycles:write')">
+        <a href="/delete">Delete row</a>
+    </li>
+</ul>
+
+
+<form action="/logout" method="POST">
+    <button type="submit">Logout</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bicycles</title>
+</head>
+<body>
+<ul th:each="data: ${bicycles}">
+    <li th:text="${data}"></li>
+</ul>
+
+<p th:text="${bicycles.size() < 1 ? 'Empty' : ''}"></p>
+
+<form action="/menu">
+    <input type="submit" value="Return">
+</form>
+</body>
+</html>
