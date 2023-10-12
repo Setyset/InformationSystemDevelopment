@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
+<head>
+    <title>Index | Lab5</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<header>
+    <h1>Bicycles</h1>
+</header>
+<article>
+    <section>
+
+        <ul>
+            <li>
+                <div sec:authorize="isAuthenticated()">
+                    <form method="post" th:action="@{~/Lab6_war/logout}">
+                        <button type="submit">Log out</button>
+                    </form>
+                </div>
+            </li>
+            <li>
+                <div sec:authorize="isAnonymous()">
+                    <a th:href="@{~/Lab6_war/registration}">Sign up</a>
+                </div>
+            </li>
+            <li>
+                <div sec:authorize="isAnonymous()">
+                    <a th:href="@{~/Lab6_war/login}">Sign in</a>
+                </div>
+            </li>
+        </ul>
+        <div sec:authorize="isAuthenticated()">
+            <p>Welcome, [[${#httpServletRequest.remoteUser}]]!</p>
+        </div>
+    </section>
+
+    <section>
+        <p th:text="${count} + ' different bicycles in shop'">Number: </p>
+        <ul>
+            <li><a th:href="@{~/Lab6_war/find}">Check bicycles</a></li>
+            <li><a th:href="@{~/Lab6_war/delete}">Delete bicycles</a></li>
+            <li><a th:href="@{~/Lab6_war/edit}">Edit bicycles</a></li>
+            <li><a th:href="@{~/Lab6_war/add}">Add bicycles</a></li>
+        </ul>
+    </section>
+</article>
+<footer>
+    <hr>
+    <a th:href="@{~/Lab6_war/}">Home</a>
+</footer>
+</body>
+</html>

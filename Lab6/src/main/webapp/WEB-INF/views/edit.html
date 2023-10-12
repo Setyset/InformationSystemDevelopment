@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <title>Edit | Lab6</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<header>
+    <h1>Edit bicycle</h1>
+</header>
+<article>
+    <p th:if="${notFound != null}" th:text="'Not found'">Not found</p>
+    <section>
+        <form th:object="${idForm}" method="get">
+            <div>
+                <p>ID</p>
+                <label>
+                    <input type="number" step="1" value="0" name="id" th:field="*{id}" placeholder="id"/>
+                </label>
+                <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}">id error</span>
+            </div>
+            <div>
+                <br>
+                <button type="submit">Get</button>
+            </div>
+        </form>
+    </section>
+    <hr>
+    <section>
+        <form class="form" th:object="${editForm}" method="post">
+            <div>
+                <p>ID</p>
+                <label>
+                    <input type="number" name="id" step="1" value="0" th:field="*{id}" placeholder="id" readonly/>
+                </label>
+                <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}">id error</span>
+            </div>
+            <div>
+                <p>New price</p>
+                <label>
+                    <input type="number" name="price" step="0.01" value="0" th:field="*{price}" placeholder="price"/>
+                </label>
+                <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}">price error</span>
+            </div>
+            <div>
+                <p>New in stock</p>
+                <label>
+                    <input type="number" name="inStock" step="1" value="0" th:field="*{inStock}" placeholder="inStock"/>
+                </label>
+                <span th:if="${#fields.hasErrors('inStock')}" th:errors="*{inStock}">inStock error</span>
+            </div>
+            <div class="buttons">
+                <br>
+                <button type="submit">Edit</button>
+            </div>
+        </form>
+    </section>
+</article>
+<footer>
+    <hr>
+    <a th:href="@{~/Lab6_war/}">Home</a>
+</footer>
+</body>
+</html>

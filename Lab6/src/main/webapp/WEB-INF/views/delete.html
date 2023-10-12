@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <title>Delete | Lab6</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<header>
+    <h1>Delete bicycle</h1>
+</header>
+<article>
+    <form th:object="${idForm}" method="post">
+        <div>
+            <p>ID</p>
+            <label>
+                <input type="number" name="id" th:field="*{id}" placeholder="id"/>
+            </label>
+            <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}">id error</span>
+        </div>
+        <div>
+            <br>
+            <button type="submit">Delete</button>
+        </div>
+    </form>
+</article>
+<footer>
+    <hr>
+    <a th:href="@{~/Lab6_war/}">Home</a>
+</footer>
+</body>
+</html>

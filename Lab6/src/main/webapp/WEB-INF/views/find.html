@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <title>Find | Lab6</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<header>
+    <h1>Check bicycles</h1>
+</header>
+<article>
+    <section>
+        <form th:object="${idForm}" method="get">
+            <div>
+                <p>ID (0 - all)</p>
+                <label>
+                    <input type="number" name="id" step="1" value="0" th:field="*{id}" placeholder="id"/>
+                </label>
+                <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}">id error</span>
+            </div>
+            <div>
+                <br>
+                <button type="submit">Find by ID</button>
+            </div>
+        </form>
+        <form th:object="${maxPriceForm}" method="get">
+            <div>
+                <p>Maximal price</p>
+                <label>
+                    <input type="number" name="price" step="0.01" value="0" th:field="*{price}" placeholder="price"/>
+                </label>
+                <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}">maxPrice error</span>
+            </div>
+            <div>
+                <br>
+                <button type="submit">Find by maximal price</button>
+            </div>
+        </form>
+    </section>
+    <hr>
+    <section>
+        <p th:text="'Found: ' + ${bicycles != null ? bicycles.size() : 0}">Number: </p>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>In stock</th>
+                <th>Size</th>
+                <th>Manufacturer</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="bicycle, itemStat : *{bicycles}">
+                <td><p th:text="*{bicycle.getId()}"></p></td>
+                <td><p th:text="*{bicycle.getBicycleType()}"></p></td>
+                <td><p th:text="*{bicycle.getPrice()}"></p></td>
+                <td><p th:text="*{bicycle.getInStock()}"></p></td>
+                <td><p th:text="*{bicycle.getSize()}"></p></td>
+                <td><p th:text="*{bicycle.getManufacturer()}"></p></td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</article>
+<footer>
+    <hr>
+    <a th:href="@{~/Lab5_war/}">Home</a>
+</footer>
+</body>
+</html>
